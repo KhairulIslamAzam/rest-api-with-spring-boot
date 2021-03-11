@@ -1,4 +1,4 @@
-package com.example.userdao;
+package com.example.service;
 
 import com.example.model.User;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class UserDao {
+public class UserDaoService {
     private static List<User> users = new ArrayList<>();
     private static int countId = 3;
 
