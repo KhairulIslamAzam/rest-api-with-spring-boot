@@ -1,5 +1,7 @@
 package com.example.service;
 
+import ch.qos.logback.classic.spi.IThrowableProxy;
+import com.example.exception.UserNotFoundException;
 import com.example.model.User;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +33,18 @@ public class UserDaoService {
     }
 
     public User findById(int id) {
-        return users.stream().filter(u-> u.getId() == id)
-                .findFirst().orElse(null);
+
+        //here from list users it filter the u.getid and match with id if match the id then
+        //return the id or else it return null;
+        return users.stream().filter(u -> u.getId() == id)
+                .findFirst().orElseThrow(() -> new UserNotFoundException(id +" not found"));
+
+        //same as above code where the stream api
+//        for (User user : users) {
+//            if (user.getId() == id) {
+//                return user;
+//            }
+//        }
+//        throw new UserNotFoundException(id + " not found");
     }
 }
